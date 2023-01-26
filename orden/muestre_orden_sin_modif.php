@@ -23,7 +23,11 @@ orden,
 kilometraje,
 estado,
 mecanico
- from $tabla14  where id_empresa = '".$_SESSION['id_empresa']."' and tipo_orden < '2' and anulado = '0'  order by id desc limit 100";
+from $tabla14  
+where id_empresa = '".$_SESSION['id_empresa']."' 
+and tipo_orden < '2' and anulado = '0'  
+order by id desc 
+";
 
 $consulta_ordenes = mysql_query($sql_muestre_ordenes,$conexion);
 

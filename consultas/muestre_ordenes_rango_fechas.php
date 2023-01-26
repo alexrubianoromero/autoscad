@@ -27,6 +27,7 @@ echo '<tr>';
 echo '<td>FECHA</td>';
 echo '<td align="center">ORDEN</td>';
 echo '<td>PLACA</td>';
+echo '<td>LINEA</td>';
 echo '<td>KILOMETRAJE</td>';
 echo '<td>CODIGO</td>';
 echo '<td>DESCRIPCION COD</td>';
@@ -37,10 +38,12 @@ echo '</tr>';
 
 while($ordenes = mysql_fetch_assoc($consulta_ordenes))
 	{
+		$linea = traerLineaCarro($ordenes['placa'],$conexion);
 		echo '<tr>';
 		echo '<td>'.$ordenes['fecha'].'</td>';
 		echo '<td align="center">'.$ordenes['orden'].'</td>';
 		echo '<td>'.$ordenes['placa'].'</td>';
+		echo '<td>'.$linea.'</td>';
 		echo '<td>'.$ordenes['kilometraje'].'</td>';
 		echo '<td>'.$ordenes['codigo'].'</td>';
 		echo '<td>'.$ordenes['descripcion'].'</td>';
@@ -55,11 +58,11 @@ echo '</table>';
 function traerLineaCarro($placa,$conexion)
 {
 	$sql = "select tipo from carros where placa = '".$placa."'  order by idcarro desc limit 1";
+	// die($sql);
 	$consulta = mysql_query($sql,$conexion);
 	$arregloDatos = mysql_fetch_assoc($consulta);
 	$linea = $arregloDatos['tipo'];
-	echo $linea; 
-	die(); 
+	return $linea; 
 }
 ?>
 
