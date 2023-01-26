@@ -1,0 +1,110 @@
+* {
+	margin-left: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: sans-serif;
+}
+header {
+	height: 50px;
+	background: #4E94AB;
+	color: #4E94AB;
+}
+#btn-menu{
+	display: none;
+}
+
+header label {
+	font-size: 30px;
+	cursor: pinter;
+	display: none;
+}
+
+.menu ul {
+	background: #4E94AB;
+	display: flex;
+	list-style: none;
+
+}
+.menu ul ul {
+
+	display: none;
+}
+.menu a {
+
+	display: block;
+	padding: 15px 20px;
+	color: #fff;
+	text-decoration: none;
+
+}
+
+.menu a:hover {
+	background: rgba(0,0,0,0.3);
+}
+
+.menu ul li:hover ul {
+	display: block;
+	position: absolute;
+}
+
+h1{
+	
+	color: black;
+	/* margin-left: 10px; */
+	font-size: 30px;
+	text-align: center; 
+
+}
+h2{
+	
+	color: black;
+	/* margin-left: 10px; */
+	font-size: 20px;
+	text-align: center; 
+
+}
+h3{
+	
+	color: black;
+	/* margin-left: 10px; */
+	font-size: 15px;
+	text-align: left; 
+
+}
+/*  h4 es pa ra los titulos de los reportes  */
+h4{
+	
+	color: black;
+	/* margin-left: 10px; */
+	font-size: 15px;
+	text-align: left; 
+
+}
+h5{
+	
+	color: black;
+	/* margin-left: 10px; */
+	font-size: 15px;
+	text-align: center; 
+
+}
+
+.format_table {
+ border: 1px solid #000;
+  border-collapse: collapse;
+}.format_table th, {
+  border: 1px solid #000;
+
+}
+.format_table td {
+  border: 1px solid #000;
+}
+
+#mostrar_contratos{
+width:auto;
+height:auto;
+	color: black;
+	/* margin-left: 10px; */
+	font-size: 20px;
+	text-align: center; 
+}
