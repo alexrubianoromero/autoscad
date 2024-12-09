@@ -12,6 +12,21 @@ session_start();
 </head>
 <body>
 <? 
+// function demora()
+// {
+    
+//  $contador = 1; 
+// //  $limite = 180000000; 
+// $limite = 50000000; 
+//  while($contador <= $limite){ 
+// //  echo $contador . '<br />'; 
+//  $contador++; 
+//  } 
+
+// }
+// demora();
+// demora();
+
 include("../empresa.php"); 
 include('../valotablapc.php');
 include('../funciones.php');

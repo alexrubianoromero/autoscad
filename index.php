@@ -49,7 +49,7 @@
     </table>
     <div id="div_recordar_clave">
       <!-- <BUTTON id ="btn_recordar_contrasena"> ENVIAR_CORREO_RECORDAR_CLAVES</BUTTON> -->
-      <a id="linksiguiente" href="recuperarclaves/index.php">ENVIAR CLAVE</a>
+      <!-- <a id="linksiguiente" href="recuperarclaves/index.php">ENVIAR CLAVE</a> -->
     </div>
   </div>
 </form>

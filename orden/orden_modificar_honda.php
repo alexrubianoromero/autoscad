@@ -130,6 +130,7 @@ include('../colocar_links2.php');
 <div id = "divorden">
 
   <form name = "actualizarorden" action="actualizar_orden_honda.php" method="post">
+  <input type="hidden" id="nombreUsuarioLogueado" value="<?php   echo $_SESSION['usuario'] ?>">
     <table border = "1"  width = "75%">
       <tr>
         <td colspan="2" rowspan="4"><img src="<?php  echo $ruta_imagen    ?>" width="318" height="104"></td>
@@ -508,7 +509,15 @@ function busque_estado($tabla26,$id_estado,$id_empresa,$conexion)
 
 <script language="JavaScript" type="text/JavaScript">
             
+function actualizarUsuarioHoraModif(){
+	var data =  'idOrden=' + $("#orden_numero").val();
+		data += '&nombreUsuarioLogueado=' + $("#nombreUsuarioLogueado").val();
+	$.post('../orden/actualizarUltimamodificacionOrden2.php',data,function(a){
+				/* $("#nuevodiv").html(a); */
+			});
+}
 			$(document).ready(function(){
+
                
 						//////////////////
 			   $("#codigopan").keyup(function(e){
@@ -546,11 +555,13 @@ function busque_estado($tabla26,$id_estado,$id_empresa,$conexion)
 							$("#nuevodiv").html(a);
 								//alert(data);
 							});	
+							actualizarUsuarioHoraModif();
 						 });
 				
 					///////////////////////////////////para eliminar items
 					$(".eliminar").click(function(){
 			
+						    actualizarUsuarioHoraModif();
 							var data =  'eliminar =' + $(this).attr('value');
 							data += '&factupan=' + $("#orden_numero").val();
 							$.post('eliminar_items.php',data,function(a){
@@ -632,7 +643,7 @@ function valida_envia(){
 	*/
 	
 //el formulario se envia 
-   	alert("Muchas gracias por enviar el formulario"); 
+   	/* alert("Muchas gracias por enviar el formulario");  */
    	document.actualizarorden.submit(); 
 }
 </script>

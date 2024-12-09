@@ -69,25 +69,7 @@ $nombrebase = "autoscad";
 
 
 
-/*
-$servidor = "localhost";
 
-$usuario = "ctwtvsxj_admin";
-
-$clave  = "ElMejorProgramador***";
-
-$nombrebase = "ctwtvsxj_base_autoscad_pruebas";
-*/
-
-
-
-$servidor = "localhost";
-
-$usuario = "ctwtvsxj_admin";
-
-$clave  = "ElMejorProgramador***";
-
-$nombrebase = "ctwtvsxj_autoscad";
 
 
 

@@ -2,26 +2,35 @@
 session_start();
 include('../valotablapc.php');
 include('../funciones.php');
+// echo '<pre>';
+// print_r($datos_orden);
+// echo '</pre>';
+// die();
 $ancho_tabla = '95%';
 
-$sql_placas = "select cli.nombre as nombrecli,cli.identi as clidenti,cli.direccion,cli.telefono,car.placa,car.marca,car.modelo,car.color,car.tipo,car.chasis,
- o.fecha,o.observaciones,o.radio,o.antena,o.repuesto,o.herramienta,o.otros,o.iva as iva ,o.orden,o.kilometraje,o.mecanico,o.id,
- e.identi,e.telefonos as telefonos_empresa ,e.direccion as direccion_empresa,o.kilometraje_cambio,e.tipo_taller,cli.email,e.condiciones_orden,
- o.fecha_entrega, o.fecha_salida , e.email_empresa,e.razon_social,o.abono
+$sql_placas = "select cli.nombre as nombrecli,cli.identi as clidenti,cli.direccion,cli.telefono,car.placa,car.marca,car.modelo,
+car.color,car.tipo,car.chasis,
+o.fecha,o.observaciones,o.radio,o.antena,o.repuesto,o.herramienta,o.otros,o.iva as iva ,o.orden,o.kilometraje,o.mecanico,o.id,
+e.identi ,e.telefonos as telefonos_empresa ,e.direccion as direccion_empresa,o.kilometraje_cambio,e.tipo_taller,cli.email,e.condiciones_orden,
+o.fecha_entrega, o.fecha_salida , e.email_empresa,e.razon_social,o.abono,o.kilometraje,car.id,o.hora
+
 from $tabla4 as car
 inner join $tabla3 as cli on (cli.idcliente = car.propietario)
 inner join $tabla14 as o  on (o.placa = car.placa)
 inner join $tabla10 as e on  (e.id_empresa = o.id_empresa) 
- where o.id = '".$_REQUEST['idorden']."'   and   o.id_empresa = '".$_SESSION['id_empresa']."'   ";
- //echo '<br>'.$sql_placas.'<br>';
+where o.id = '".$_REQUEST['idorden']."' ";  
+//  and   o.id_empresa = '".$_SESSION['id_empresa']."'   ";
+//  echo '<br>'.$sql_placas.'<br>';
+//  die();
 $datos = mysql_query($sql_placas,$conexion);
 $filas = mysql_num_rows($datos); 
 $datos_orden = mysql_fetch_assoc($datos);
-/*
-echo '<pre>';
-print_r($datos_orden);
-echo '</pre>';
-*/
+
+// echo '<pre>';
+// print_r($datos_orden);
+// echo '</pre>';
+
+// die('paso 4');
 
 if($datos_orden['mecanico']== '')
 	{
@@ -43,7 +52,8 @@ else {
 <html lang="es"  class"no-js">
 <head>
 	<!--<meta charset="UTF-8">-->
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF8" />
+
 	<title>Document</title>
 	<link rel="stylesheet" href="../css/normalize.css">
 	<link rel="stylesheet" href="../css/style.css">
@@ -57,92 +67,114 @@ else {
 	z-index:2;
 }
 .style1 {font-weight: bold}
+#Layer1 {
+	position:absolute;
+	width:122px;
+	height:14px;
+	z-index:1;
+	top: 538px;
+	left: 456px;
+}
+#Layer2 {
+	position:absolute;
+	width:166px;
+	height:18px;
+	z-index:2;
+	left: 456px;
+	top: 604px;
+}
 
 -->
+#div_hora{
+	font-size: 15px;
+}
     </style>
 </head>
 <body>
 <div = "contenidos">
-
-<table width="<?php echo $ancho_tabla; ?>" border="0">
-  <tr>
-    <td width="40%" align = "center"><?php 
-		echo $datos_orden['razon_social'].'<BR>NIT. '.$datos_orden['identi'];	 
-  	?></td>
-    <td width="4%"><img src="../imagenes/honda_orden/logo_honda.jpg" width="47" height="46"></td>
-    <td width="11%"><img src="../imagenes/honda_orden/yamaha.jpg" width="95" height="16"></td>
-    <td width="9%"><img src="../imagenes/honda_orden/zuzuki_logo.jpg" width="82" height="32"></td>
-    <td width="35%" align="center"><?php  echo ' <h16><strong>ORDEN DE ENTRADA</strong></h16><BR> 
-
-<h15><strong>CENTRO DE SERVICIO AUTORIZADO  HONDA</strong></h15>'
-?></td>
-    <td width="3%" align="left"><h20>OT_</h20></td>
-    <td width="10%" align="right"><h20><?php echo $datos_orden['orden']  ?></h20></td>
-  </tr>
-  </table>
-
-
 <br>
-
+<table  width="<?php echo $ancho_tabla; ?>" border="1">
+  <tr>
+    <td width="194" align = "center"><img src="../logos/autoscad.png" width="131" height="79"></td>
+    <td colspan="2" align = "center">NIT No   <?php  echo $datos_orden['identi'];  ?> 
+	<?php  echo '<br>'.$datos_orden['direccion_empresa'];  ?> 
+	<?php  echo '<br>CONTACTO '.$datos_orden['telefonos_empresa'];  ?>	</td>
+  </tr>
+  <tr>
+    <td>ORDEN DE REPARACION </td>
+    <td width="45">No</td>
+    <td width="51"><?php echo $datos_orden['orden']  ?></td>
+  </tr>
+</table>
 <h80>
 <table width="<?php echo $ancho_tabla; ?>" border="1">
   <tr>
-    <td><strong>CLIENTE: </strong><?php echo $datos_orden['nombrecli']  ?></td>
-    <td><strong>CC.o NIT: </strong><?php echo $datos_orden['clidenti']  ?></td>
-    <td><strong>DIRECCION: </strong><?php echo $datos_orden['direccion']  ?></td>
-    </tr>
+    <td>RAZON SOCIAL </td>
+    <td><?php echo $datos_orden['nombrecli']  ?></td>
+    <td>FECHA</td>
+    <td><?php echo $datos_orden['fecha']  ?></td>
+  </tr>
   <tr>
-    <td><strong>TELS: </strong><?php echo $datos_orden['telefono']  ?></td>
-    <td><strong>EMAIL: </strong><?php echo $datos_orden['email']  ?></td>
-    <td><strong>TECNICO: </strong><?php echo $nombre_mecanico ?></td>
-    </tr>
-  <tr>
-    <td><strong>FECHA DE INGRESO: </strong> <?php echo $datos_orden['fecha']  ?></td>
-    <td><strong>FECHA PROMETIDA: </strong> <?php echo $datos_orden['fecha_entrega']  ?></td>
-    <td><strong>FECHA SALIDA:</strong> <?php echo $datos_orden['fecha_salida']  ?></td>
-    </tr>
+    <td>DIRECCION</td>
+    <td><?php echo $datos_orden['direccion']  ?></td>
+    <td>KILOMETRAJE</td>
+    <td><?php echo $datos_orden['kilometraje']  ?></td>
+  </tr>
 </table>
-
 <table width="<?php echo $ancho_tabla; ?>" border="1">
   <tr>
-    
-    <td><strong>MARCA: </strong><?php echo $datos_orden['marca']  ?></td>
-	<td><strong>LINEA: </strong><?php echo $datos_orden['tipo']  ?></td>
-    <td><strong>MODELO: </strong><?php echo $datos_orden['modelo']  ?></td>
-    <td><strong>CHASIS No: </strong> <?php echo $datos_orden['chasis']  ?></td>
-    <td><strong>COLOR: </strong><?php echo $datos_orden['color']  ?></td>
-    <td><strong>PLACA: </strong><?php echo $datos_orden['placa']  ?></td>
-	
-    </tr>
+    <td>ID</td>
+    <td><?php echo $datos_orden['clidenti']  ?></td>
+    <td>TELEFONO</td>
+    <td><?php echo $datos_orden['telefono']  ?></td>
+    <td>VEHICULO/LINEA</td>
+    <td><?php echo $datos_orden['marca'].'/'.$datos_orden['tipo']  ?></td>
+    <td>MODELO</td>
+    <td><?php echo $datos_orden['modelo']  ?></td>
+  </tr>
 </table>
-<br>
-<div align="center">
+<table width="<?php echo $ancho_tabla; ?>" border="1">
+  <tr>
+    <td>COLOR</td>
+    <td><?php echo $datos_orden['color']  ?></td>
+    <td>PLACA</td>
+    <td><?php echo $datos_orden['placa']  ?></td>
+    <td>SERIAL</td>
+    <td><?php echo $datos_orden['chasis']  ?></td>
+  </tr>
+</table>
+<?php
+?>
+
+<table  width="<?php echo $ancho_tabla; ?>" border="1">
+	
 <?php   
 pintar_inventario_estado_vehiculo($tabla24,$tabla25,$_SESSION['id_empresa'],$_REQUEST['idorden'],$conexion,$ancho_tabla);
+// die('paso6');
 ?>
-</div>
-<br>
+</table>
+
 <table width = "<?php echo $ancho_tabla; ?>" border="1">
   <tr>
-    <td align="center"><strong>OBSERVACIONES</strong></td>
+    <td align="center"><strong>CLIENTE REPORTA Y SOLICITA</strong></td>
   </tr>
    <tr>
-    <td><textarea name="descripcion"  id = "descripcion" cols="90" rows="4"> <?php  echo $datos_orden['observaciones']?>
+    <td><textarea name="descripcion"  id = "descripcion" cols="80" rows="20"> <?php  echo $datos_orden['observaciones']?>
     </textarea></td>
   </tr>
-   <tr>
-    <td><h81><?php   echo $datos_orden['condiciones_orden'] ?></h81></td>
-  </tr>
 </table>
+
+
 <br>
 <table width = "<?php echo $ancho_tabla; ?>" border="1">
 <tr>
-    <td colspan = "5"  align="center"><strong>PARTES Y RESPUESTOS</strong></td>
+    <td colspan = "6"  align="center"><strong>RESPUESTOS Y MANO DE OBRA</strong></td>
   </tr>
 	
 <tr>
     <td><strong>REFERENCIA</strong></td>
     <td><strong>DESCRIPCION</strong></td>
+	<td><strong>MECANICO</strong></td>
     <td><strong>CANTIDAD</strong></td>
     <td><strong>VALOR UN.</strong></td>
     <td><strong>TOTAL </strong></td>
@@ -151,7 +183,7 @@ pintar_inventario_estado_vehiculo($tabla24,$tabla25,$_SESSION['id_empresa'],$_RE
 
 
 <?php
-$subtotal = muestre_items_local($_REQUEST['idorden'],$tabla15,$conexion,$_SESSION['id_empresa'],$tabla12);
+$subtotal = muestre_items_local($_REQUEST['idorden'],$tabla15,$conexion,$_SESSION['id_empresa'],$tabla12,$tabla21);
 
 $suma_repuestos = suma_repuestos_items($_REQUEST['idorden'],$tabla15,$conexion,$_SESSION['id_empresa'],$tabla12);
 $suma_mano_obra = suma_manos_obra($_REQUEST['idorden'],$tabla15,$conexion,$_SESSION['id_empresa'],$tabla12);
@@ -159,91 +191,33 @@ $porcentaje_iva = traer_iva($tabla17,$conexion);
 $valor_iva_mano = ($suma_mano_obra * $porcentaje_iva)/100;
 $subtotalmenosabono = $subtotal-$datos_orden['abono'];
 ///////////////////////////////////////////////////////////////
-echo '<tr><td colspan="3"></td><td><strong>SUBTOTAL(No incluye iva mano de obra)</strong></td><td align="right"><strong>'.$subtotal.'<strong></td> </tr>';
-echo '<tr><td colspan="3"></td><td><strong>SUBTOTAL Menos Abono</strong></td><td align="right"><strong>'.$subtotalmenosabono.'<strong></td> </tr>';
+echo '<tr><td colspan="4"></td><td><strong>TOTAL</strong></td><td align="right"><strong>'.number_format($subtotal, 0, ',', '.').'<strong></td> </tr>';
+//echo '<tr><td colspan="4"></td><td><strong>SUBTOTAL Menos Abono</strong></td><td align="right"><strong>'.$subtotalmenosabono.'<strong></td> </tr>';
 ?>
 </table>
 <br>
 <table width = "<?php echo $ancho_tabla; ?>" border="1">
   <tr>
-    <td>&nbsp;</td>
-    <td><strong>COTIZACION</strong></td>
-    <td><strong>ABONO</strong></td>
-    <td><strong>FECHA</strong></td>
-    <td><strong>SALDO</strong></td>
+    <td width="297" rowspan="2"><div align="center"><img src="../logos/croquis.png" width="299" height="133"></div></td>
+    <td width="260" height="44">FIRMA CLIENTE <br><br><br><br> </td>
   </tr>
   <tr>
-    <td>VALOR MANO DE OBRA </td>
-    <td align="right" ><strong><?php  echo $suma_mano_obra; ?></strong></td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td>IVA MANO DE OBRA  <?php echo $porcentaje_iva; ?>%</td>
-    <td align="right"><strong><?php echo $valor_iva_mano;  ?></strong></td>
-    <td align="right">&nbsp;</td>
-    <td>&nbsp;</td>
-    <td align="right">&nbsp;</td>
-  </tr>
-  <tr>
-    <td>VALOR REPUESTOS </td>
-    <td align="right"><span class="style1">
-      <?php  echo $suma_repuestos; ?>
-    </span></td>
-    <td align="right">&nbsp;</td>
-    <td>&nbsp;</td>
-    <td align="right">&nbsp;</td>
-  </tr>
-  <tr>
-    <td><strong>TOTAL</strong></td>
-	<?php   $subtotal = $subtotal + $valor_iva_mano ; ?>
-    <td align="right"><strong><?php echo $subtotal  ?></strong></td>
-    <td align="right"><strong><?php echo $datos_orden['abono']  ?></strong></td>
-    <td>&nbsp;</td>
-	<?php $saldo = $subtotal - $datos_orden['abono']  ?> 
-    <td align="right"><strong><?php echo $saldo  ?></strong></td>
+    <td><br><br><br>FIRMA RESPONSABLE</td>
   </tr>
 </table>
+<div id="div_hora" align="center">
+Hora creacion orden:  <?php echo $datos_orden['hora']  ?>
 <br>
-<table width = "<?php echo $ancho_tabla; ?>" border="0">
-  <tr>
-    <td>RECIBIDO</td>
-    <td>ENTREGADO</td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td>--------------</td>
-    <td>-------------------</td>
-  </tr>
-  <tr>
-    <td>TALLER</td>
-    <td>CLIENTE</td>
-  </tr>
-</table>
-<br>
-<table width = "<?php echo $ancho_tabla; ?>" border="0">
-  <tr>
-   <td align = "center"><?php echo $datos_orden['direccion_empresa'].'-'.$datos_orden['telefonos_empresa'].'-'. $datos_orden['email_empresa']  ?> </td>
-  </tr>
-</table>
-
+DESPUES DE RETIRADO EL VEHICULO AUTOSCAD NO SE HACE RESPONSABLE POR PERDIDAS Y/O DAÑOS
+</div>
 </h80>
-
 </div>
  
 <?php
 
 //////////////////////////////
 // esta funcion la utilizo cuando se va a facturar por esto ya tiene un formato predefinido para que cuadre al momento de mostrar la factura e imprimirla 
-function muestre_items_local($orden,$tabla,$conexion,$id_empresa,$tabla12)
+function muestre_items_local($orden,$tabla,$conexion,$id_empresa,$tabla12,$tabla21)
 		{
 				$subtotal = 0;
 				$valor_repuestos=0;
@@ -262,10 +236,19 @@ function muestre_items_local($orden,$tabla,$conexion,$id_empresa,$tabla12)
 	 			echo '<tr>
 			     
                 <td >'.$items['codigo'].'</td>
-    			<td  > '.$items['descripcion'].'</td>
+    			<td  > '.$items['descripcion'].'</td>';
+				
+				$sql_operarios_item = "select idcliente,nombre from $tabla21 where id_empresa = '".$_SESSION['id_empresa']."' and idcliente = '".$items['id_mecanico']."'  ";
+							//echo '<br>consulta<br>'.$sql_operarios_item;
+							$consulta_operariositem =  mysql_query($sql_operarios_item,$conexion);
+							$operario = mysql_fetch_assoc($consulta_operariositem);
+							$nombre_operario = $operario['nombre'];
+							
+				echo '<td>'.$nombre_operario.'</td>';
+				echo '
 				<td align="center"> '.$items['cantidad'].'</td>
-    			<td align="right">'.$items['valor_unitario'].'</td>
-   			    <td align="right">'.$items['total_item'].'</td>
+    			<td align="right">'.number_format($items['valor_unitario'], 0, ',', '.').'</td>
+   			    <td align="right">'.number_format($items['total_item'], 0, ',', '.').'</td>
 					</tr>
 				';
 				//<td width="34">'.$i.'</td>

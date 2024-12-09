@@ -12,6 +12,23 @@
 </head>
 <body>
 <?php 
+
+// function demora()
+// {
+    
+//  $contador = 1; 
+// //  $limite = 180000000; 
+// $limite = 50000000; 
+//  while($contador <= $limite){ 
+// //  echo $contador . '<br />'; 
+//  $contador++; 
+//  } 
+
+// }
+// demora();
+// demora();
+// demora();
+
 include('../valotablapc.php');
 $sql_carros ="select idcarro,placa from $tabla4";
 $consulta_placas = mysql_query($sql_carros,$conexion);
