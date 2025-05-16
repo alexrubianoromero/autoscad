@@ -1,0 +1,230 @@
+
+#contenidos{
+	width: 1000px;
+	height: auto;
+	margin: auto;
+	position: relative;
+}
+
+#formulario_orden{
+	width: 200px;
+	height: auto;
+	margin: 50px;
+	position: relative;
+}
+
+h1{
+	
+	color: black;
+	margin-left: 10px;
+	font-size: 50px;
+	text-align: center; 
+
+}
+h2{
+	
+	color: black;
+	margin-left: 5px;
+	font-size: 30px;
+	text-align: center; 
+
+}
+h20{
+	
+	color: black;
+	margin-left: 10px;
+	font-size: 27px;
+	text-align: center; 
+
+}
+h3{
+	
+	color: black;
+	/*margin-left: 10px;*/
+	font-size: 20px;
+	text-align: center; 
+
+}
+
+h4{
+	
+	color: black;
+	font-size: 15px;
+	text-align: left; 
+
+}
+h40{
+	
+	color: black;
+	/*margin-left: 10px;*/
+	font-size: 24px;
+	text-align: center; 
+
+}
+
+h14{
+	color: black;
+	font-size: 15px;
+	text-align:center; 
+
+}
+h5{
+	
+	color: black;
+	font-size: 12px;
+	text-align: left; 
+
+}
+h6{
+	
+	color: black;
+	font-size: 30px;
+	text-align: left; 
+
+}
+h7{
+	
+	color: black;
+	font-size: 11px;
+	text-align: left; 
+
+}
+h8{
+	
+	color: black;
+	font-size: 17px;
+	text-align: left; 
+
+}
+h9{
+	
+	color: black;
+	font-size: 14px;
+	text-align: left; 
+
+}
+h10{
+	
+	color: blue;
+	font-size:  15px;
+	text-align: left;
+	
+
+}
+h11{
+	
+	color: black;
+	font-size: 17px;
+	text-align: left; 
+	font-weight:700;
+
+}
+
+h80{
+	
+	color: black;
+	font-size: 11px;
+	text-align: left; 
+
+}
+h81{
+	
+	color: black;
+	font-size: 8px;
+	text-align: left; 
+
+}
+h15{
+	
+	color: black;
+	font-size: 9px;
+	text-align: center; 
+
+}
+h16{
+	
+	color: black;
+	font-size: 16px;
+	text-align: center; 
+
+}
+
+
+
+/*
+table{
+width:600;
+border:#0000CC;
+margin:10px;
+position:absolute;
+}
+*/
+
+
+
+label.check {
+  display: block;
+  cursor: pointer;
+  padding-left: 26px;
+  background: url('check_off.png') left center no-repeat;
+}
+label.check input {
+  position: absolute;
+  left: -9999px;
+}
+label.check.c_on {
+  background: url('check_on.png')  left center no-repeat;
+}
+
+/*
+.menu:link{color: black; text-decoration: none;}
+.menu:visited{color: black; text-decoration: none;}
+.menu:hover{color: black; text-decoration: none; text-shadow: 0 0 13px white;}
+.menu:active{color: black; text-decoration: none;}
+*/
+
+table td  {
+height:11px;
+size:15;
+}
+
+.sombra {
+background: rgba(0,0,0,0.1); 
+/*background-color: #f00; */
+}
+.sinborde {
+border:none;
+}
+.sinbordeinferior
+ {border-top:1px solid black; border-bottom:0}
+ 
+.redondeado
+{
+border:radius
+}
+
+.abono
+{
+	color:#000000;
+}
+.color_borde_tabla{
+border: blue 3px solid;
+}
+
+.fila_amarilla
+  {background-color:#FFFF66; }
+  
+.fila_verde
+   {background-color:#00FF66; } 
+
+.fila_gris
+  {background-color: gray; }
+  
+.fila_azul
+  {background-color:#66FFFF; }  
+
+.fila_blanca
+  {background-color:#FFFFFF; }  
+  
+.fila_llenar
+    {background-color:#FFFFCC; }  
