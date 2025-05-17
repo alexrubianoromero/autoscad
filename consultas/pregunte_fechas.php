@@ -36,6 +36,6 @@
 					});	
  				//alert("consultar_fechas");	
  			});
- 			//
+			
  })
 </script>

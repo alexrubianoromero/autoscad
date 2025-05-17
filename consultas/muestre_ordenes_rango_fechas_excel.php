@@ -1,10 +1,12 @@
 <?php
-session_start();
+header('Content-Type:text/csv; charset=latin1');
+header('Content-Disposition: attachment; filename="Rango Fechas.xls"');
+// session_start();
 include('../valotablapc.php');
 $sql_ordenes = "select o.fecha,o.orden,o.placa,o.kilometraje,o.observaciones,i.codigo,i.descripcion,i.valor_unitario,i.cantidad,i.total_item
  from $tabla14 o
  inner join $tabla15 i on (i.no_factura = o.id)
-where fecha between  '".$_REQUEST['fechain']."'  and '".$_REQUEST['fechafin']."' and i.id_empresa = '".$_SESSION['id_empresa']."' 
+where fecha between  '".$_REQUEST['fechain']."'  and '".$_REQUEST['fechafin']."' and i.id_empresa = '94' 
 and i.anulado = 0   order by o.id "; 
 $consulta_ordenes = mysql_query($sql_ordenes,$conexion);
 //echo 'consulta<br>'.$sql_ordenes;
@@ -20,11 +22,6 @@ $consulta_ordenes = mysql_query($sql_ordenes,$conexion);
 </head>
 
 <body>
-<br>
-<div style="font-size:20px;">
-	<a role="button" href ="muestre_ordenes_rango_fechas_excel.php?fechain=<?php echo $_REQUEST['fechain'] ; ?>&fechafin=<?php  echo$_REQUEST['fechafin'] ;?>">Enviar a excel</a>
-
-</div>
 <br>
 <?php
 echo '<table border = "1">';
