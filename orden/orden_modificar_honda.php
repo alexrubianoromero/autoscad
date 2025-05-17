@@ -3,7 +3,8 @@ session_start();
 ?>
 
 <!DOCTYPE html>
-<html lang="es"  class"no-js">
+<!-- <html lang="es"  class"no-js"> -->
+<html lang="es" >
 <head>
 	<meta charset="UTF-8">
 	<title>orde captura</title>
@@ -253,66 +254,79 @@ include('../colocar_links2.php');
     </textarea>
         </label></td>
       </tr>
-     <!-- 
-	  <tr>
-        <td colspan="11"><div align="center">PARTES Y RESPUESTOS </div></td>
-      </tr>
-	 
-      <tr>
-        <td><div align="center">ITEM</div></td>
-        <td ><div align="center">COD </div></td>
-        <td ><div align="center">DESCRIPCION</div></td>
-        <td><div align="center">VR Unit </div></td>
-        <td>CANT.</td>
-        <td >TOTAL</td>
-        <td ><div align="center"></div></td>
-      </tr>
-	  -->
+    </table>
 	  
-	  
-      <?php
-	  /*
-     $no_item = 0 ;
-     while($items = mysql_fetch_array($consulta_items))
-	 		 {
-			 $i++;
-	 			echo '<tr>
-				<td width="34">'.$i.'</td>
-                <td width="38">'.$items['codigo'].'</td>
-    			<td width="149">'.$items['descripcion'].'</td>
-    			<td width="82">'.$items['valor_unitario'].'</td>
-    			<td width="87">'.$items['cantidad'].'</td>
-   			    <td width="85">'.$items['total_item'].'</td>
-   				 <td width="77"></td>
-					</tr>
-				';
-				
-			 } 
-  */			 
-  ?>
-      <!--
-  <tr>
-    <td width="34">&nbsp;</td>
-   
-    <td width="38"><label>
-      <input name="codigopan" type="text" id = "codigopan" size="5" />
-    </label></td>
-    <td width="149"><input type="text" name="descripan" id = "descripan" />
-    <div id = "descripcion"></div></td>
-    <td width="82"><input type="text" name="valor_unit" id = "valor_unit" size = "10" /></td>
-    <td width="87"><input name="exispan" type="text" id = "exispan" size="10" /></td>
-    <td width="85"><input name="cantipan" type="text" id = "cantipan"  size ="10"/></td>
-    <td width="77"><input name="totalpan" type="text" id = "totalpan" size="15" /></td>
-    <td width="75"><button type = "button" id = "agregar_item">Agregar</button></td>
-	
-  </tr>
-  -->
+  <script>
   
+  function asignaracodigopan123(codigo){
+	  event.preventDefault();
+	  alert('buenas'); 
+	  /* document.getElementById('codigopan').value='12345678'; */
+	  document.getElementById('txtcodigo').value='12345678';
+  } 
+
+   function pantallaBuscarCodigo(){
+	/* alert('buenas ');  */
+	   event.preventDefault();
+	     const miDiv = document.getElementById('div_buscar_codigo');
+	     miDiv.style.backgroundColor = 'lightblue'; 
+		  miDiv.style.border = '3px solid black';
+			const http=new XMLHttpRequest();
+			const url = 'ordenformulariobuscarCodigo.php';
+			http.onreadystatechange = function(){
+				if(this.readyState == 4 && this.status ==200){
+					console.log(this.responseText);
+					document.getElementById("div_buscar_codigo").innerHTML = this.responseText;
+				}
+			};
+			http.open("POST",url);
+			http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			http.send("opcion=validarIdenti"
+					/* + "&identi="+identi */
+				);
+
+   } 
+
+
+
+   function limpiarpantallaBuscarCodigo()
+   {
+	 event.preventDefault();
+		document.getElementById("div_buscar_codigo").innerHTML = '';
+   }
+     function buscardescripcionCodigo()
+    {
+		 event.preventDefault();
+    	var descripcion = document.getElementById('descripcionabuscar').value;
+        /* alert(descripcion); */
+             const http=new XMLHttpRequest();
+			 const url = 'ordenbuscarPorDescripcion.php';
+			 http.onreadystatechange = function(){
+			 	if(this.readyState == 4 && this.status ==200){
+			 		console.log(this.responseText);
+			 		document.getElementById("div_resultadosbusquedaCodigo").innerHTML = this.responseText;
+			 	}
+			 };
+			 http.open("POST",url);
+			 http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			 http.send("opcion=validarIdenti"
+			 		+ "&descripcion="+descripcion 
+				);
+    }
+
+
+
+  </script>
+  	<button onclick="pantallaBuscarCodigo();" >Buscar</button>
+		<button onclick="limpiarpantallaBuscarCodigo();" >Cerrar</button>
   <br>
+    <div id="div_buscar_codigo" style="overflow:auto;" height= "100px;"></div>
   <br>
 	  <table width="75%" border = "1">
       <tr>
-        <td colspan="11"><div align="center">PARTES Y RESPUESTOS </div></td>
+        <td colspan="11"><div align="center">PARTES Y RESPUESTOS 
+	
+		</div></td>
       </tr>
       <tr>
     <td><div align="center">ITEM</div></td>
@@ -360,7 +374,8 @@ include('../colocar_links2.php');
 				?>
 		 </div>
 		 <br>
-  </table>
+  
+	</table>
   <br>
 
 	 <BR>
