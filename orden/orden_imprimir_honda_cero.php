@@ -12,7 +12,7 @@ $sql_placas = "select cli.nombre as nombrecli,cli.identi as clidenti,cli.direcci
 car.color,car.tipo,car.chasis,
 o.fecha,o.observaciones,o.radio,o.antena,o.repuesto,o.herramienta,o.otros,o.iva as iva ,o.orden,o.kilometraje,o.mecanico,o.id,
 e.identi ,e.telefonos as telefonos_empresa ,e.direccion as direccion_empresa,o.kilometraje_cambio,e.tipo_taller,cli.email,e.condiciones_orden,
-o.fecha_entrega, o.fecha_salida , e.email_empresa,e.razon_social,o.abono,o.kilometraje,car.id,o.hora
+o.fecha_entrega, o.fecha_salida , e.email_empresa,e.razon_social,o.abono,o.kilometraje,car.id,o.hora,cli.email as email 
 
 from $tabla4 as car
 inner join $tabla3 as cli on (cli.idcliente = car.propietario)
@@ -111,6 +111,8 @@ else {
   <tr>
     <td>RAZON SOCIAL </td>
     <td><?php echo $datos_orden['nombrecli']  ?></td>
+    <td>EMAIL:</td>
+    <td><?php echo $datos_orden['email']  ?></td>
     <td>FECHA</td>
     <td><?php echo $datos_orden['fecha']  ?></td>
   </tr>
