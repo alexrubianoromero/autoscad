@@ -246,53 +246,86 @@ include('../colocar_links2.php');
         <td colspan="11"></td>
       </tr>
       <tr>
-        <td colspan="11"><div align="center">TRABAJO A REALIZAR </div></td>
+	  <td colspan="11"><div align="center">TRABAJO A REALIZAR </div></td>
       </tr>
       <tr>
-        <td height="80" colspan="11"><label>
-          <textarea name="descripcion"  id = "descripcion" cols="90" rows="4"> <?php  echo $datos[0]['observaciones']?>
-    </textarea>
-        </label></td>
+	  <td height="80" colspan="11"><label>
+	  <textarea name="descripcion"  id = "descripcion" cols="90" rows="4"> <?php  echo $datos[0]['observaciones']?>
+	  </textarea>
+	  </label></td>
       </tr>
-    </table>
+	  </table>
 	  
-  <script>
-  
-  function asignaracodigopan123(codigo){
-	  event.preventDefault();
-	  alert('buenas'); 
-	  /* document.getElementById('codigopan').value='12345678'; */
-	  document.getElementById('txtcodigo').value='12345678';
-  } 
+	  <script>
+	  
+	  function asignaracodigopan123(codigo){
+		  event.preventDefault();
+		  /* alert(codigo); */
+		  document.getElementById("div_buscar_codigo").innerHTML='';
+		  document.getElementById("div_buscar_codigo").style.display='none';
+		  document.getElementById('codigopan').value=codigo;
+		  buscarInfoCodigo(codigo);
+	} 
 
-   function pantallaBuscarCodigo(){
-	/* alert('buenas ');  */
-	   event.preventDefault();
-	     const miDiv = document.getElementById('div_buscar_codigo');
-	     miDiv.style.backgroundColor = 'lightblue'; 
-		  miDiv.style.border = '3px solid black';
+	function buscarInfoCodigo(codigo)
+	{
+			/* alert(identi); */
 			const http=new XMLHttpRequest();
-			const url = 'ordenformulariobuscarCodigo.php';
+			const url = 'ordenbuscarInfoCodigo.php';
 			http.onreadystatechange = function(){
 				if(this.readyState == 4 && this.status ==200){
 					console.log(this.responseText);
-					document.getElementById("div_buscar_codigo").innerHTML = this.responseText;
+					  var  resp = JSON.parse(this.responseText); 
+					/* document.getElementById("infoVerificaciones").innerHTML = this.responseText; */
+					document.getElementById("descripan").value= resp.descripcion;
+					document.getElementById("exispan").value= resp.cantidad;
+					document.getElementById("cantipan").focus();
+
 				}
 			};
 			http.open("POST",url);
 			http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			http.send("opcion=validarIdenti"
-					/* + "&identi="+identi */
-				);
+					+ "&codigo="+codigo
+			);
+	}
 
-   } 
-
-
-
-   function limpiarpantallaBuscarCodigo()
-   {
-	 event.preventDefault();
+	function pantallaBuscarCodigo(){
+		/* alert('buenas ');  */
+		event.preventDefault();
+		const miDiv = document.getElementById('div_buscar_codigo');
+		miDiv.style.backgroundColor = 'lightblue'; 
+		miDiv.style.border = '3px solid black';
+		const http=new XMLHttpRequest();
+		const url = 'ordenformulariobuscarCodigo.php';
+		http.onreadystatechange = function(){
+			if(this.readyState == 4 && this.status ==200){
+				console.log(this.responseText);
+				document.getElementById("div_buscar_codigo").style.display = 'block';
+				document.getElementById("div_buscar_codigo").innerHTML = this.responseText;
+				/* document.getElementById('codigopan').value='';
+				document.getElementById('descripan').value='';
+				document.getElementById('valor_unit').value='';
+				document.getElementById('exispan').value='';
+				document.getElementById('cantipan').value='';
+				document.getElementById('totalpan').value='0'; */
+			}
+		};
+		http.open("POST",url);
+		http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		http.send("opcion=validarIdenti"
+		/* + "&identi="+identi */
+		);
+		
+	} 
+	
+	
+	
+	function limpiarpantallaBuscarCodigo()
+	{
+		event.preventDefault();
 		document.getElementById("div_buscar_codigo").innerHTML = '';
+		document.getElementById("div_buscar_codigo").style.display='none';
    }
      function buscardescripcionCodigo()
     {
@@ -313,14 +346,45 @@ include('../colocar_links2.php');
 			 		+ "&descripcion="+descripcion 
 				);
     }
+     function buscarElCodigo()
+    {
+		 event.preventDefault();
+    	var codigo = document.getElementById('codigoabuscar').value;
+        /* alert(descripcion); */
+             const http=new XMLHttpRequest();
+			 const url = 'ordenbuscarPorCodigo.php';
+			 http.onreadystatechange = function(){
+			 	if(this.readyState == 4 && this.status ==200){
+			 		console.log(this.responseText);
+			 		document.getElementById("div_resultadosbusquedaCodigo").innerHTML = this.responseText;
+			 	}
+			 };
+			 http.open("POST",url);
+			 http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			 http.send("opcion=validarIdenti"
+			 		+ "&codigo="+codigo 
+				);
+    }
 
 
 
   </script>
-  	<button onclick="pantallaBuscarCodigo();" >Buscar</button>
-		<button onclick="limpiarpantallaBuscarCodigo();" >Cerrar</button>
-  <br>
-    <div id="div_buscar_codigo" style="overflow:auto;" height= "100px;"></div>
+   <table width="75%" border = "1">
+   <tr>
+		<td>
+			<div style="background-color: #4E94AB;">
+			<button onclick="pantallaBuscarCodigo();" >Buscar Descripcion</button>
+				<button onclick="limpiarpantallaBuscarCodigo();" >Cerrar Buscar</button>
+			</div>
+		</td>
+	</tr>
+	<tr>	
+		<td>
+			<div id="div_buscar_codigo" style="padding:10px;" width="500px;" height= "100px;"></div>
+		</td>
+   </tr>
+   </table>
+
   <br>
 	  <table width="75%" border = "1">
       <tr>

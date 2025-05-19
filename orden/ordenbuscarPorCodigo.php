@@ -2,7 +2,7 @@
 session_start();
 include('../valotablapc.php');
 include('../funciones.php');
-$sql = "select * from productos where descripcion like '%".$_REQUEST['descripcion']."%' ";
+$sql = "select * from productos where codigo_producto like '%".$_REQUEST['codigo']."%' ";
 // die($sql);
 $consulta = mysql_query($sql,$conexion);
 $productos = get_table_assoc($consulta);

@@ -9,18 +9,15 @@
 </head>
 <body>
     <div class="container" id="divFormularioBuscarCodigo">
-        <p style="font-size: 20px;">Formulario de Buscar Codigo </p>
+        <p style="font-size: 20px;">Buscar Descripcion    <input type="text" id="descripcionabuscar" onkeyup="buscardescripcionCodigo();"></p>
+        <p style="font-size: 20px;">Buscar Codigo    <input type="text" id="codigoabuscar" onkeyup="buscarElCodigo();"></p>
         <table>
             <tr>
                 <td>
-                    <input type="text"  id="txtcodigo"   >
-                    Descripcion:
-                </td>
-                <td>
-                    <input type="text" id="descripcionabuscar" onkeyup="buscardescripcionCodigo();">
                 </td>
             </tr>
         </table>
+
         <div id ="div_resultadosbusquedaCodigo" style="overflow:auto;" height="200px;" width="70%"></div>
          
     </div>
