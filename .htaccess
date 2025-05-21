@@ -1,0 +1,13 @@
+Options +FollowSymLinks
+
+RewriteEngine on
+
+
+
+RewriteRule ^ordendetrabajo/([0-9]+)$ orden/orden_imprimir_honda_cero_sin_sesion.php?idorden=$1
+
+
+
+
+
+

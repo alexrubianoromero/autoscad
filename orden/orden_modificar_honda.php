@@ -242,6 +242,37 @@ include('../colocar_links2.php');
 			}
 		?>
 	  </select>	  </td></tr>
+	  </table>		
+	  
+	  
+      <table border = "1"  width = "75%">	
+		<tr>
+		<td align="center">
+			<button 
+			style="background-color:#0d6efd;
+			color:#fff;border:1px #0d6efd;
+			padding:2px;
+			margin:4px; 
+			border-radius: 2px;
+			font-size: 25px;"
+			onclick="enviarCorreoAvanceOrden('<?php echo $_REQUEST['idorden']  ;  ?>');";
+			> Enviar Correo Avance Orden </button>
+		</td>
+		</tr>	
+
+		<tr>
+			<td align="center">
+				<div id="div_envio_correo" 
+					style="background-color: #4E94AB; 
+					font-size: 25px;
+					color:white; 
+					"
+					></div>
+			</td>
+		</tr>	
+	  </table>		
+
+      <table border = "1"  width = "75%">						
       <tr>
         <td colspan="11"></td>
       </tr>
@@ -257,7 +288,33 @@ include('../colocar_links2.php');
 	  </table>
 	  
 	  <script>
-	  
+
+	  function enviarCorreoAvanceOrden(idOrden)
+	  {
+		  event.preventDefault();
+		  var confirmacion =  confirm('Esta seguro de enviar el correo de avance al cliente?');
+		  if(confirmacion)
+		  {
+
+			  /* alert('se enviara el correo al cliente '); */
+		  	const http=new XMLHttpRequest();
+			  const url = 'enviarCorreoAvance.php'; 
+			  http.onreadystatechange = function(){
+				  if(this.readyState == 4 && this.status ==200){
+					  console.log(this.responseText);
+					  document.getElementById("div_envio_correo").innerHTML = this.responseText;
+					}
+				};
+				http.open("POST",url);
+				http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				http.send("opcion=validarIdenti"
+				+ "&idOrden="+idOrden
+				);
+		   }
+
+	  }
+
+
 	  function asignaracodigopan123(codigo){
 		  event.preventDefault();
 		  /* alert(codigo); */
