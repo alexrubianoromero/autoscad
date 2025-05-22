@@ -292,11 +292,10 @@ include('../colocar_links2.php');
 	  function enviarCorreoAvanceOrden(idOrden)
 	  {
 		  event.preventDefault();
-		  var confirmacion =  confirm('Esta seguro de enviar el correo de avance al cliente?');
+		  /* var confirmacion =  confirm('Esta seguro de enviar el correo de avance al cliente?');
 		  if(confirmacion)
-		  {
-
-			  /* alert('se enviara el correo al cliente '); */
+		  { */
+			/* alert('se enviara el correo al cliente '); */
 		  	const http=new XMLHttpRequest();
 			  const url = 'enviarCorreoAvance.php'; 
 			  http.onreadystatechange = function(){
@@ -310,7 +309,7 @@ include('../colocar_links2.php');
 				http.send("opcion=validarIdenti"
 				+ "&idOrden="+idOrden
 				);
-		   }
+		   /* } */
 
 	  }
 
