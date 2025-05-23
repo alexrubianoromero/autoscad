@@ -83,7 +83,8 @@ echo '<table border= "1">';
 	echo '<tr>';
 
 	echo '<td><h3>No Orden<h3></td><td><h3>Estado</h3></td><td><h3>Linea</h3></td><td><h3>Fecha</h3></td><td><h3>Placa</h3></td><td><h3>Tecnico</h3></td>';
-	echo '<td><h3>FACTURAR</h3></td>';
+	echo '<td><h3>Correo</h3></td>';
+	echo '<td><h3>Facturar</h3></td>';
 	echo '<td><h3>modificar_honda</h3></td>';
 
 	
@@ -137,7 +138,15 @@ echo '<table border= "1">';
 				
 
 				echo '<td><h3>'.$ordenes['4'].'</h3></td><td><h3>'.$nombre_estado.'</h3></td><td><h3>'.$linea_tipo.'</h3></td><td><h3>'.$ordenes['1'].'</h3></td><td><h3>'.$ordenes['2'].'</h3></td><td><h3>'.$nombre_mecanico.'</h3></td>';
-
+				
+				echo '<td>';
+				?>
+					<button 
+						onclick="enviarCorreoAvanceOrdenNuevo('<?php   echo $ordenes['0'];  ?>');"
+					>Correo</button>
+				<?php	
+				echo '</td>';
+				
 				echo '<td><h3>';
       			if($ordenes['8']<1)
       			{	
@@ -254,4 +263,31 @@ function buscar_mecanico($tabla21,$id_mecanico,$id_empresa,$conexion)
 <script src="../js/prefixfree.min.js"></script>
 
 <script src="../js/jquery-2.1.1.js"></script>   
+<script>
+	  function enviarCorreoAvanceOrdenNuevo(idOrden)
+	  {
+		  event.preventDefault();
+		  /* var confirmacion =  confirm('Esta seguro de enviar el correo de avance al cliente?');
+		  if(confirmacion)
+		  { */
+			/* alert('se enviara el correo al cliente '); */
+		  	const http=new XMLHttpRequest();
+			  const url = 'enviarCorreoAvanceNuevo.php'; 
+			  http.onreadystatechange = function(){
+				  if(this.readyState == 4 && this.status ==200){
+					  console.log(this.responseText);
+					//    var  resp = JSON.parse(this.responseText); 
+					//   document.getElementById("div_envio_correo").innerHTML = this.responseText;
+					alert('Correo Enviado123'+  this.responseText);
+					}
+				};
+				http.open("POST",url);
+				http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				http.send("opcion=validarIdenti"
+				+ "&idOrden="+idOrden
+				);
+		   /* } */
+
+	  }
+</script>
 

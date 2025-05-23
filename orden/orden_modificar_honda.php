@@ -254,18 +254,21 @@ include('../colocar_links2.php');
 			padding:2px;
 			margin:4px; 
 			border-radius: 2px;
-			font-size: 25px;"
-			onclick="enviarCorreoAvanceOrden('<?php echo $_REQUEST['idorden']  ;  ?>');";
+			font-size: 25px;
+			display:none;
+			"
+			onclick="enviarCorreoAvanceOrden123('<?php echo $_REQUEST['idorden']  ;  ?>');";
 			> Enviar Correo Avance Orden </button>
 		</td>
 		</tr>	
 
 		<tr>
 			<td align="center">
-				<div id="div_envio_correo" 
+				<div id="div_envio_correo123" 
 					style="background-color: #4E94AB; 
 					font-size: 25px;
 					color:white; 
+					display:none;
 					"
 					></div>
 			</td>
@@ -289,7 +292,7 @@ include('../colocar_links2.php');
 	  
 	  <script>
 
-	  function enviarCorreoAvanceOrden(idOrden)
+	  function enviarCorreoAvanceOrden123(idOrden)
 	  {
 		  event.preventDefault();
 		  /* var confirmacion =  confirm('Esta seguro de enviar el correo de avance al cliente?');
@@ -301,7 +304,7 @@ include('../colocar_links2.php');
 			  http.onreadystatechange = function(){
 				  if(this.readyState == 4 && this.status ==200){
 					  console.log(this.responseText);
-					  document.getElementById("div_envio_correo").innerHTML = this.responseText;
+					  document.getElementById("div_envio_correo123").innerHTML = this.responseText;
 					}
 				};
 				http.open("POST",url);

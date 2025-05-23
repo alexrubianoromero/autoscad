@@ -32,7 +32,7 @@ Autoscad<br>
 ";
 // $email = $infoCliente['email'];
 $email="alexrubianoromero@gmail.com";
-  die('funcion deshabilitada temporalmente ');
+  // die('funcion deshabilitada temporalmente ');
 
 $correo = new EnviarCorreoPhpMailer($email,$body);
 

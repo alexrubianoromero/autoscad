@@ -40,7 +40,7 @@ class EnviarCorreoPhpMailer
             $this->mail->Body    = $this->body;
             // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
             $this->mail->send();
-            echo 'Mensaje de Correo Enviado<br>';
+            echo 'Mensaje de Correo Enviado';
         } catch (Exception $e) {
             echo "Error en e  el envio del mensaje: {$this->mail->ErrorInfo}";
         }
