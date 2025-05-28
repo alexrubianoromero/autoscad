@@ -30,8 +30,8 @@ Atentamente <br>
 
 Autoscad<br>
 ";
-// $email = $infoCliente['email'];
-$email="alexrubianoromero@gmail.com";
+$email = $infoCliente['email'];
+// $email="alexrubianoromero@gmail.com";
   // die('funcion deshabilitada temporalmente ');
 
 $correo = new EnviarCorreoPhpMailer($email,$body);
