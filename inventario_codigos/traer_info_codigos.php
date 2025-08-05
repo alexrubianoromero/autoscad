@@ -14,6 +14,14 @@ order by id_codigo desc
 $consulta_codigos = mysql_query($sql_muestre_codigos,$conexion);
 $filas = mysql_num_rows($consulta_codigos);
 
+if(isset($_REQUEST['excel']))
+{
+    header('Cache-Control: max-age=0');
+    header('Cache-Control: max-age=1'); // Para IE < 9
+    header('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); // Fecha antigua
+    header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
+    header('Pragma: public'); // Para IE < 9
+}
 
 
 if($filas == 0 )

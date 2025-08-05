@@ -1,5 +1,7 @@
 <?php
 $raiz = dirname(dirname(__file__));
+// echo '<pre>'; print_r($_REQUEST); echo '</pre>'; die(); 
+// die($raiz);
 require_once($raiz.'/valotablapc.php');
 require_once($raiz.'/funciones.php');
 require_once($raiz.'/orden/EnviarCorreoPhpMailer.class.php');
@@ -24,7 +26,6 @@ $body = "Atentamente enviamos el avance de tu orden de reparacion
 
 Puedes consultarla en el siguiente link <br><br>
 
-https://alexrubiano.com/autoscad/ordendetrabajo/".$_REQUEST['idOrden']." <br><br>
 
 Atentamente <br>
 
@@ -32,9 +33,10 @@ Autoscad<br>
 ";
 $email = $infoCliente['email'];
 // $email="alexrubianoromero@gmail.com";
-  // die('funcion deshabilitada temporalmente ');
+// die('funcion deshabilitada temporalmente ');
 
-$correo = new EnviarCorreoPhpMailer($email,$body);
+$correo = new EnviarCorreoPhpMailer($email,$body,$_REQUEST['idOrden']);
 
+// https://alexrubiano.com/autoscad/ordendetrabajo/".$_REQUEST['idOrden']." <br><br>
 
 ?>

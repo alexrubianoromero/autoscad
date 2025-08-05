@@ -10,10 +10,12 @@ class EnviarCorreoPhpMailer
     protected $mail;
     protected $body;
     protected $email; 
+    protected $idorden;
 
-    public function __construct($email,$body){
+    public function __construct($email,$body,$idorden){
         $this->email = $email;
         $this->body = $body;
+        $this->idorden = $idorden;
         $this->mail = new PHPMailer(true);
         $this->enviarCorreoPhpMailer();
     }
@@ -38,6 +40,13 @@ class EnviarCorreoPhpMailer
             $this->mail->isHTML(true);                                  //Set email format to HTML
             $this->mail->Subject = 'AVANCE ORDEN';
             $this->mail->Body    = $this->body;
+
+            // $ruta_archivo_adjunto = __DIR__ . '/pdf/'.$this->idorden.'.pdf';
+            $ruta_archivo_adjunto = './pdf/'.$this->idorden.'.pdf';
+            $nombre_para_adjunto = $this->idorden.'.pdf';
+            $tipo_mime_adjunto = 'application/pdf'; // Tipo MIME del PDF
+
+            $this->mail->addAttachment($ruta_archivo_adjunto, $nombre_para_adjunto, 'base64', $tipo_mime_adjunto);
             // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
             $this->mail->send();
             echo 'Mensaje de Correo Enviado';

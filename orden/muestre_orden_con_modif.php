@@ -140,10 +140,11 @@ echo '<table border= "1">';
 				echo '<td><h3>'.$ordenes['4'].'</h3></td><td><h3>'.$nombre_estado.'</h3></td><td><h3>'.$linea_tipo.'</h3></td><td><h3>'.$ordenes['1'].'</h3></td><td><h3>'.$ordenes['2'].'</h3></td><td><h3>'.$nombre_mecanico.'</h3></td>';
 				
 				echo '<td>';
+				
 				?>
 					<button 
-						onclick="enviarCorreoAvanceOrdenNuevo('<?php   echo $ordenes['0'];  ?>');"
-					>Correo</button>
+						onclick="generarArchivoPdfNuevo('<?php   echo $ordenes['0'];  ?>');"
+					>EnviarCorreoPdf</button>
 				<?php	
 				echo '</td>';
 				
@@ -183,7 +184,9 @@ echo '<table border= "1">';
 					echo  '<td><h3>';
 
 					echo '<a href="orden_imprimir_honda_cero.php?idorden='.$ordenes['0'].'"  target = "_blank">Imprimir_Orden</a>';
-
+					
+					echo '<br><a href="pdf/ordenPdf3ver.php?idorden='.$ordenes['0'].'"  target = "_blank">Pdf</a>';
+					
 					echo '</h3></td>'; 
 
 				}
@@ -267,10 +270,11 @@ function buscar_mecanico($tabla21,$id_mecanico,$id_empresa,$conexion)
 	  function enviarCorreoAvanceOrdenNuevo(idOrden)
 	  {
 		  event.preventDefault();
+
 		  /* var confirmacion =  confirm('Esta seguro de enviar el correo de avance al cliente?');
 		  if(confirmacion)
 		  { */
-			/* alert('se enviara el correo al cliente '); */
+			// alert('se enviara el correo al cliente '); 
 		  	const http=new XMLHttpRequest();
 			  const url = 'enviarCorreoAvanceNuevo.php'; 
 			  http.onreadystatechange = function(){
@@ -278,7 +282,7 @@ function buscar_mecanico($tabla21,$id_mecanico,$id_empresa,$conexion)
 					  console.log(this.responseText);
 					//    var  resp = JSON.parse(this.responseText); 
 					//   document.getElementById("div_envio_correo").innerHTML = this.responseText;
-					alert('Correo Enviado123'+  this.responseText);
+					alert('Correo Enviado'+  this.responseText);
 					}
 				};
 				http.open("POST",url);
@@ -289,5 +293,35 @@ function buscar_mecanico($tabla21,$id_mecanico,$id_empresa,$conexion)
 		   /* } */
 
 	  }
+	  function generarArchivoPdfNuevo(idOrden)
+	  {
+		  event.preventDefault();
+		  /* var confirmacion =  confirm('Esta seguro de enviar el correo de avance al cliente?');
+		  if(confirmacion)
+		  { */
+			/* alert('se enviara el correo al cliente '); */
+		  	const http=new XMLHttpRequest();
+			  const url = 'pdf/ordenPdf3.php'; 
+			  http.onreadystatechange = function(){
+				  if(this.readyState == 4 && this.status ==200){
+					  console.log(this.responseText);
+					//    var  resp = JSON.parse(this.responseText); 
+					//   document.getElementById("div_envio_correo").innerHTML = this.responseText;
+				}
+			};
+			http.open("POST",url);
+			http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			http.send("opcion=validarIdenti"
+			+ "&idorden="+idOrden
+		);
+		var confirmacion = confirm('desea enviar el correo al cliente ?'+idOrden );
+		 
+		if (confirmacion){
+			enviarCorreoAvanceOrdenNuevo(idOrden);
+		}
+
+	  }
+
+
 </script>
 

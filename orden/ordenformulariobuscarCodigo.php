@@ -11,6 +11,7 @@
     <div class="container" id="divFormularioBuscarCodigo">
         <p style="font-size: 20px;">Buscar Descripcion    <input type="text" id="descripcionabuscar" onkeyup="buscardescripcionCodigo();"></p>
         <p style="font-size: 20px;">Buscar Codigo    <input type="text" id="codigoabuscar" onkeyup="buscarElCodigo();"></p>
+        
         <table>
             <tr>
                 <td>

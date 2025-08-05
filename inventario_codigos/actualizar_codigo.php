@@ -40,7 +40,7 @@ set cantidad =  '".$nueva_cantidad ."'
 $consulta_grabar_codigo = mysql_query($sql_actualizar_codigo,$conexion);
 
 echo '<div style="font-size:25px;">';
-echo 'CODIGO ACTUALIZADO';
+echo '<br>CODIGO ACTUALIZADO';
 echo '<br>Ahora el costo unitario es :'.$_REQUEST['costoUnitario'];
 echo '<br>Ahora la cantidad es  : '.$nueva_cantidad;
 echo '</div>';
