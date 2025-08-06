@@ -386,8 +386,8 @@ class calendarioView
                     <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
                     <div class="modal-footer">
                     <button type="button" class="btn btn-success" id="btnAgregar">Agregar</button>
-                    <button type="button" class="btn btn-success" id="btnModificar">Modificar</button>
-                    <button type="button" class="btn btn-danger" id="btnEliminar" >Eliminar</button>
+                    <!-- <button type="button" class="btn btn-success" id="btnModificar">Modificar</button>
+                    <button type="button" class="btn btn-danger" id="btnEliminar" >Eliminar</button> -->
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                     </div>
                 </div>

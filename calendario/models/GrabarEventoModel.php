@@ -172,7 +172,24 @@ class GrabarEventoModel extends Conexion
             $sql = "update empresa set contaor = '".$numero."' ";
             $consulta = mysql_query($sql,$this->connectMysql());
         }
-    
+        
+        public function traerInfoclienteIdCLiente($idCliente)
+        {
+            $sql = "select * from cliente0 where idcliente = '".$idCliente."'    "; 
+            $consulta = mysql_query($sql,$this->connectMysql());
+            $arreglo = mysql_fetch_assoc($consulta);
+            return $arreglo;
+            
+        }
+        
+        public function actualizarEmailClienteId($idCliente ,$email)
+        {
+            $sql = "update cliente0 set email = '".$email."'   where idcliente = '".$idCliente."'    "; 
+            $consulta = mysql_query($sql,$this->connectMysql());
+
+        }
+
+
 }
 
 

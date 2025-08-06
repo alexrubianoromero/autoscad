@@ -10,7 +10,7 @@
  {
     protected $view;
     protected $model;
-    protected $correo; 
+    // protected $correo; 
 
     public function   __construct()
     {
@@ -20,7 +20,7 @@
         //    die();
         $this->view = new calendarioView();
         $this->model = new GrabarEventoModel();
-        $this->correo = new GrabarEventoModel();
+        // $this->correo = new GrabarEventoModel();
         // echo 'bienvenido calendario ';
         if(!$_REQUEST['opcion'])
         {
@@ -29,12 +29,26 @@
 
         if($_REQUEST['opcion']=='grabarEvento')
         { 
-            if($_REQUEST['flagPlaca']==0){ //si laplaca no existe graba datos
-                $this->grabarClienteVehiculo($_REQUEST);
-            }
-           $body = $this->traerBody($_REQUEST);
-           new enviarCorreoPhpMailer($_REQUEST['email'],$body);
-            $this->model->grabarEvento($_REQUEST);   
+                if($_REQUEST['flagPlaca']==0){ //si laplaca no existe graba datos
+                   $idCliente =  $this->grabarClienteVehiculo($_REQUEST);
+                //    $infocliente = $this->model->traerInfoclienteIdCLiente($idCliente);
+                }else{
+                    $infocliente =  $this->model->traerClienteConPlaca($_REQUEST['placa']);
+                    $idCliente = $infocliente['idcliente'];
+                }
+                //actualizar correo si esta en blanco con el *idCliente
+                // echo '<pre>';
+                // print_r($infocliente);
+                // echo '</pre>';
+                // die();
+                $this->model->actualizarEmailClienteId($idCliente,$_REQUEST['email']);
+                
+            $body = $this->traerBody($_REQUEST);
+            new enviarCorreoPhpMailer($_REQUEST['email'],$body);
+                $this->model->grabarEvento($_REQUEST);  
+                //actualizar email en el cliente si este esta vacio
+                //o si hubiera un abandera de actualizacion
+
         }
 
 
@@ -85,7 +99,7 @@
         
        $idCliente =  $this->model->grabarCliente($request);
        $this->model->grabarvehiculoCita($request,$idCliente);
-
+       return $idCliente;
     }
 
     public function traerBody($datos){
