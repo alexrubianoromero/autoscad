@@ -31,24 +31,17 @@
         { 
                 if($_REQUEST['flagPlaca']==0){ //si laplaca no existe graba datos
                    $idCliente =  $this->grabarClienteVehiculo($_REQUEST);
-                //    $infocliente = $this->model->traerInfoclienteIdCLiente($idCliente);
                 }else{
                     $infocliente =  $this->model->traerClienteConPlaca($_REQUEST['placa']);
                     $idCliente = $infocliente['idcliente'];
                 }
-                //actualizar correo si esta en blanco con el *idCliente
-                // echo '<pre>';
-                // print_r($infocliente);
-                // echo '</pre>';
-                // die();
                 $this->model->actualizarEmailClienteId($idCliente,$_REQUEST['email']);
                 
             $body = $this->traerBody($_REQUEST);
             new enviarCorreoPhpMailer($_REQUEST['email'],$body);
                 $this->model->grabarEvento($_REQUEST);  
-                //actualizar email en el cliente si este esta vacio
-                //o si hubiera un abandera de actualizacion
-
+                $idEvento = $this->model->traerMaxidEventos();
+                $this->model->actualizarNombreEnCita($idEvento,$_REQUEST['nombre'] );
         }
 
 

@@ -620,7 +620,7 @@ class calendarioView
     public function formuCrearOrdenDesdeAgenda($idEvento)
     {
         $infoEvento = $this->modelGrabarEvento->traerEventoId($idEvento);
-        echo 'llego a las vista '; 
+        // echo 'llego a las vista '; 
         //mostrar nombre
         //mostrar dats de la placa 
         ?>

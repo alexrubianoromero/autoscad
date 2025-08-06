@@ -26,6 +26,13 @@ class GrabarEventoModel extends Conexion
         ,'".$request['hora']."','".$request['email']."','".$request['servicio']."')";
         $consulta = mysql_query($sql,$this->connectMysql());
     }
+    public function traerMaxidEventos()
+    {
+        $sql = "select max(id) as maxId from citas ";
+        $consulta = mysql_query($sql,$this->connectMysql());
+        $arreglo = mysql_fetch_assoc($consulta);
+        return $arreglo['maxId'];
+    }
 
     public function actualizarEvento($request)
     {
@@ -186,7 +193,13 @@ class GrabarEventoModel extends Conexion
         {
             $sql = "update cliente0 set email = '".$email."'   where idcliente = '".$idCliente."'    "; 
             $consulta = mysql_query($sql,$this->connectMysql());
-
+            
+        }
+        
+        public function actualizarNombreEnCita($idCita,$nombre)
+        {
+            $sql = "update citas set nombre_cliente = '".$nombre."'    where id = '".$idCita."'   "; 
+            $consulta = mysql_query($sql,$this->connectMysql());
         }
 
 
