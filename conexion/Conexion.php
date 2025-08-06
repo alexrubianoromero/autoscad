@@ -6,8 +6,7 @@ class Conexion{
     // private $password = "";
     // private $db = "motorcycleroom";
     // private $conect;
-    
-    
+   
         // private $conect;
 
     public function __construct(){

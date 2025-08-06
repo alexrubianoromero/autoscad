@@ -1,0 +1,2 @@
+[06-Aug-2025 09:59:22 UTC] PHP Deprecated:  mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead in /home/ctwtvsxj/public_html/demo2/conexion/Conexion.php on line 21
+[06-Aug-2025 09:59:56 UTC] PHP Deprecated:  mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead in /home/ctwtvsxj/public_html/demo2/conexion/Conexion.php on line 21

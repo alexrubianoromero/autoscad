@@ -27,12 +27,12 @@
       <tr>
         <td width="208"><img src="imagenes/usuario.png" width="60" height="72"></td>
         <td width="573"><label><h2>
-          <input type="text" name="usuario" id="usuario" /></h2>
+          <input type="text" name="usuario" id="usuario" value ="pruebas" /></h2>
         </label></td>
       </tr>
       <tr>
         <td><img src="imagenes/clave.png" width="60" height="30"></td>
-        <td><h2><input type="password" name="clave" /></h2></td>
+        <td><h2><input type="password" name="clave" value ="1234" /></h2></td>
       </tr>
       <tr>
         <td colspan="2"><h2><label>

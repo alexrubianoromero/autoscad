@@ -86,7 +86,6 @@ $nombrebase = "ctwtvsxj_base_autoscad_pruebas";
 
 
 
-
 $conexion =mysql_connect($servidor,$usuario,$clave);
 
 $la_base =mysql_select_db($nombrebase,$conexion);
