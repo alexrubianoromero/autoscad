@@ -11,8 +11,8 @@ from $tabla3 as cli  where  cli.id_empresa = '".$_SESSION['id_empresa']."'   ";
 //inner join $tabla4 car  on (car.propietario = cli.idcliente)
 //,placa,marca,color,modelo
 include('../colocar_links2.php');
-echo '<h3>CONSULTA GENERAL DE CLIENTES</h3>';
-echo '<h3><a href = "captura_cliente.php" >NUEVO CLIENTE</a></h3>';
+echo '<h3>CONSULTA GENERAL DE CLIENTES </h3>';
+echo '<h3><a href = "captura_cliente.php" >NUEVO CLIENTE</a> </h3>';
 
 echo '<table border = "1" width = "95%" >';
 echo '<tr><td>NOMBRE</td><td>IDENTIFICACION</td><td>TELEFONO</td><td>EMAIL</td><td>DIRECCION</td><td>PLACA</td><td>MARCA</td><td>MODELO</td><td>HISTORIAL</td></tr>';
