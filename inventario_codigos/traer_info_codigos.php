@@ -5,7 +5,7 @@ include('../valotablapc.php');
 // echo 'buenas 1234';
 $sql_muestre_codigos = "select codigo_producto as CODIGO_PRODUCTO, 
 descripcion as DESCRIPCION , valor_unit as VALOR_UNITARIO , 
-cantidad as EXISTENCIAS, id_codigo,valorventa,producto_minimo   
+cantidad as EXISTENCIAS, id_codigo,valorventa,producto_minimo,ubicacion   
 from $tabla12  
 where 1=1 
 order by id_codigo desc
@@ -37,7 +37,10 @@ if($filas == 0 )
            
 	 		echo '<table border = "1">';
             	echo '<tr>';
-	 		 echo '<td><h3>CODIGO</td><td><h3>DESCRIPCION</h3></td><td><h3>VR.COMPRA</h3></td>';
+	 		 echo '<td><h3>CODIGO</td><td><h3>DESCRIPCION</h3></td>';
+
+			 echo '<td><h3>UBICACION</h3></td>';
+			 echo '<td><h3>VR.COMPRA</h3></td>';
 			//  echo '<td><h3>VALOR VENTA(Sin Iva)</h3></td>';
 			//  echo '<td><h3>UTILIDAD</h3></td>'; 
 			 echo '<td><h3>EXISTENCIAS </h3>'; 
@@ -53,8 +56,9 @@ if($filas == 0 )
                             }else{
                                 echo '<tr>';
                             }
-			  				echo '<td><h3>'.$codigos[0].'</h3></td><td><h3>'.$codigos[1].'</h3></td><td><h3>'.$codigos[2].'</h3></td>';
-							// echo '<td><h3>'.$codigos[5].'</h3></td>';
+			  				echo '<td><h3>'.$codigos[0].'</h3></td><td><h3>'.$codigos[1].'</h3></td>';
+							  echo '<td><h3>'.$codigos[7].'</h3></td>';
+							echo'<td><h3>'.$codigos[2].'</h3></td>';
 							// echo '<td><h3>'.$utilidad.'</h3></td>';							
 							echo '<td><h3>'.$codigos[3].'</h3></td>';
 							echo '<td><h3><a href="preguntarProductoMinimo.php?id_codigo='.$codigos[4].'">'.$codigos[6].'</a></h3></td>';

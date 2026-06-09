@@ -50,8 +50,10 @@ descripcion  = '".$_POST['descripcion']."',
 valor_unit  = '".$_POST['valor_unit']."',      
 valorventa  = '".$_POST['valorventa']."',  
 iva  = '".$_POST['iva']."', 
-nomina  = '".$_POST['nomina']."', 
-cantidad  = '".$_POST['cantidad']."' 
+nomina  = '".$_POST['nomina']."'
+,cantidad  = '".$_POST['cantidad']."' 
+,ubicacion  = '".$_POST['ubicacion']."' 
+
 where id_codigo = '".$_POST['id_codigo']."'  
 and id_empresa = '".$_SESSION['id_empresa']."'
 ";

@@ -42,10 +42,17 @@ echo '</pre>';
 	 <h3>
     </label></td>
   </tr>
+
   <tr>
     <td><h3>DESCRIPCION</h3></td>
     <td><h3><input type="text" name="descripcion"  id="descripcion"  value = "<?php echo $codigos['descripcion']  ?>"></h3></td>
-  </tr><tr>
+  </tr>
+  <tr>
+    <td><h3>UBICACION</h3></td>
+    <td><h3><input type="text" name="ubicacion"  id="ubicacion"  value = "<?php echo $codigos['ubicacion']  ?>"></h3></td>
+  </tr>
+  
+  <tr>
     <td><h3>CANTIDAD</h3></td>
     <td><h3><input type="text" name="cantidad"  id="cantidad"  value = "<?php echo $codigos['cantidad']  ?>"></h3></td>
   </tr>
@@ -96,6 +103,7 @@ echo '</pre>';
 					$("#actualizar_codigo").click(function(){
 							var data =  'codigo=' + $("#codigo").val();
 							data += '&descripcion=' + $("#descripcion").val();
+							data += '&ubicacion=' + $("#ubicacion").val();
 							data += '&valor_unit=' + $("#valor_unit").val();
 							data += '&cantidad=' + $("#cantidad").val();
 							data += '&valorventa=' + $("#valorventa").val();

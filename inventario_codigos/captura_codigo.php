@@ -52,6 +52,10 @@ $fechapan =  time();
     <td><h3><input type="text" name="descripcion"  id="descripcion"  ></h3></td>
   </tr>
   <tr>
+    <td style="background-color:#C0C0C0"><h3>UBICACION</h3></td>
+    <td><h3><input type="text" name="ubicacion"  id="ubicacion"  ></h3></td>
+  </tr>
+  <tr>
     <td><h3>PRECIO DE COMPRA </h3></td>
     <td><h3><input type="text" name="valorunit"  id="valorunit"  ></h3></td>
   </tr>
@@ -104,6 +108,7 @@ $fechapan =  time();
 					$("#grabar_codigo").click(function(){
 							var data =  'codigo=' + $("#codigo").val();
 							data += '&descripcion=' + $("#descripcion").val();
+							data += '&ubicacion=' + $("#ubicacion").val();
 							data += '&valorunit=' + $("#valorunit").val();
 							data += '&cantidad=' + $("#cantidad").val();
 							data += '&fecha=' + $("#fecha").val();

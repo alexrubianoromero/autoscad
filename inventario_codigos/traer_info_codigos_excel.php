@@ -23,6 +23,7 @@ $productos = get_table_assoc($consulta);
             <td>id</td>
             <td>Codigo</td>
             <td>Descripcion</td>
+            <td>Ubicacion</td>
             <td>Vr Compra</td>
             <td>Existencias</td>
             <td>Prod Min</td>
@@ -34,6 +35,7 @@ $productos = get_table_assoc($consulta);
               echo '<td>'.$producto['id_codigo'].'</td>';   
               echo '<td>'.$producto['codigo_producto'].'</td>';   
               echo '<td>'.$producto['descripcion'].'</td>';   
+              echo '<td>'.$producto['ubicacion'].'</td>';   
               echo '<td>'.$producto['valor_unit'].'</td>';   
               echo '<td>'.$producto['cantidad'].'</td>';   
               echo '<td>'.$producto['producto_minimo'].'</td>';   

@@ -18,7 +18,8 @@ $filas_verificar = mysql_num_rows($consulta_verificar_codigo);
 if($filas_verificar < 1)
 	{  // realizar las accciones de crearlo
 
-			$sql_grabar_codigo ="insert into $tabla12 		(codigo_producto,descripcion,valor_unit,cantidad,id_empresa,valorventa,iva,nomina,cantidad_inicial)   
+			$sql_grabar_codigo ="insert into $tabla12 		(codigo_producto,descripcion,valor_unit,cantidad,id_empresa,
+			valorventa,iva,nomina,cantidad_inicial,ubicacion)   
 			values (
 			'".$_POST['codigo']."',
 			'".$_POST['descripcion']."',
@@ -27,8 +28,9 @@ if($filas_verificar < 1)
 			'94',
 			'".$_POST['valorventa']."',
 			'".$_POST['iva']."',
-			'".$_POST['nomina']."',
-			'".$_POST['cantidad']."'
+			'".$_POST['nomina']."'
+			,'".$_POST['cantidad']."'
+			,'".$_POST['ubicacion']."'
 			)  ";
 			$consulta_grabar_codigo = mysql_query($sql_grabar_codigo,$conexion);
 			
